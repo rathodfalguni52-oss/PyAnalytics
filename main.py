@@ -4,22 +4,36 @@ from validators.input_validator import validate_file
 from cli.interface import get_argument
 
 def main():
+    print("=========================")
+    print("        PyAnalytics      ")
+    print("=========================")
     args=get_argument()
-
     file_path=args.file
 
-    if file_path.endswith(".csv"):
-        data=read_csv(file_path)
-
-    elif file_path.endswith(".json"):
-        data=read_json(file_path)
+    is_valid,msg=validate_file(file_path)
+    if not is_valid:
+        print(f"Error:{msg}")
 
     else:
-        print("Unsupported file format")
-        return
+        if file_path.endswith(".csv"):
+            data=read_csv(file_path)
+            for row in data:
+                print(row)
+                print()
+
+        elif file_path.endswith(".json"):
+            data=read_json(file_path)
+            for row in data:
+                print(row)
+                print()
+
+        else:
+            print("Unsupported file format")
+            return
 
     print("\nData loaded successfully")
-    print(data)
+
+
 
 if __name__=="__main__":
     main()
