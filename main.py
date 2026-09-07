@@ -2,6 +2,7 @@ from parsers.csv_parser import read_csv
 from parsers.json_parser import read_json
 from validators.input_validator import validate_file
 from cli.interface import get_argument
+from cleaners.data_cleaner import clean_data
 
 def main():
     print("=========================")
@@ -17,12 +18,19 @@ def main():
     else:
         if file_path.endswith(".csv"):
             data=read_csv(file_path)
+            print("\nData loaded successfully")
+            print("Original Data:")
             for row in data:
                 print(row)
-                print()
+
+            data=clean_data(data)
+            print("\nCleaned Data:")
+            for row in data:
+                print(row)
 
         elif file_path.endswith(".json"):
             data=read_json(file_path)
+            print("\nData loaded successfully")
             for row in data:
                 print(row)
                 print()
@@ -31,7 +39,6 @@ def main():
             print("Unsupported file format")
             return
 
-    print("\nData loaded successfully")
 
 
 
