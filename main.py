@@ -3,6 +3,8 @@ from parsers.json_parser import read_json
 from validators.input_validator import validate_file
 from cli.interface import get_argument
 from cleaners.data_cleaner import clean_data
+from transformers.data_transformer import(select_columns,rename_columns,filter_rows)
+
 
 def main():
     print("=========================")
@@ -25,6 +27,11 @@ def main():
 
             data=clean_data(data)
             print("\nCleaned Data:")
+            for row in data:
+                print(row)
+
+            data=select_columns(data,["Name","Age","Marks"])
+            print("\nTransformed Data:")
             for row in data:
                 print(row)
 
