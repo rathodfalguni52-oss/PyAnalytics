@@ -4,6 +4,7 @@ from validators.input_validator import validate_file
 from cli.interface import get_argument
 from cleaners.data_cleaner import clean_data
 from transformers.data_transformer import(select_columns,rename_columns,filter_rows)
+from analytics.statistics import calculation,group_by_mean
 
 
 def main():
@@ -24,16 +25,23 @@ def main():
             print("Original Data:")
             for row in data:
                 print(row)
+                
 
             data=clean_data(data)
             print("\nCleaned Data:")
             for row in data:
                 print(row)
 
+            grouped=group_by_mean(data,"Department","Marks")
+            print("\nAverage marks by department:")
+            for department,average in grouped.items():
+                print(f"{department}:{average}")
+
             data=select_columns(data,["Name","Age","Marks"])
             print("\nTransformed Data:")
             for row in data:
                 print(row)
+
 
         elif file_path.endswith(".json"):
             data=read_json(file_path)
