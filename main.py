@@ -21,49 +21,48 @@ def main():
         print(f"Error:{msg}")
 
     else:
-        if file_path.endswith(".csv"):
+        if file_path.lower().endswith(".csv"):
             data=read_csv(file_path)
-            print("\nData loaded successfully")
             print("Original Data:")
             for row in data:
                 print(row)
                 
 
-            data=clean_data(data)
-            print("\nCleaned Data:")
-            for row in data:
-                print(row)
-
-            summary=calculation(data,"Marks")
-            grouped=group_by_mean(data,"Department","Marks")
-            print("\nAverage marks by department:")
-            for department,average in grouped.items():
-                print(f"{department}:{average}")
-            export_to_markdown(summary,grouped,"output/summary.md")
-            export_to_csv(summary,grouped,"output/summary.csv")
-            print("\nReports generated:")
-            print("Markdown:output/summary.md")
-            print("CSV:output/summary.csv")
-
-            
-            data=select_columns(data,["Name","Age","Marks"])
-            print("\nTransformed Data:")
-            for row in data:
-                print(row)
-
-
-        elif file_path.endswith(".json"):
+        elif file_path.lower().endswith(".json"):
             data=read_json(file_path)
-            print("\nData loaded successfully")
-            for row in data:
-                print(row)
-                print()
 
         else:
-            print("Unsupported file format")
+            print("Error:Unsupported file format")
             return
+        print("\nData loaded successfully")
 
+        #Clean data
+        data=clean_data(data)
+        print("\nData cleaned Successfully!")
+        print("\nCleaned Data:")
+        for row in data:
+            print(row)
 
+        
+        summary=calculation(data,"Marks")
+        grouped=group_by_mean(data,"Department","Marks")
+
+        #Display Summary
+        print("\nStatistical Summary:")
+        for key,value in summary.items():
+            print(f"{key}:{value}")
+
+        #Display group by results
+        print("\nAverage marks by department:")
+        for department,average in grouped.items():
+                print(f"{department}:{average}")
+
+        #Export reports
+        export_to_markdown(summary,grouped,"output/summary.md")
+        export_to_csv(summary,grouped,"output/summary.csv")
+        print("\nReports generated generated successfully!")
+        print("Markdown:output/summary.md")
+        print("CSV:output/summary.csv")
 
 
 if __name__=="__main__":
