@@ -5,6 +5,8 @@ from cli.interface import get_argument
 from cleaners.data_cleaner import clean_data
 from transformers.data_transformer import(select_columns,rename_columns,filter_rows)
 from analytics.statistics import calculation,group_by_mean
+from exporters.markdown_exporter import export_to_markdown
+from exporters.csv_exporter import export_to_csv
 
 
 def main():
@@ -32,11 +34,18 @@ def main():
             for row in data:
                 print(row)
 
+            summary=calculation(data,"Marks")
             grouped=group_by_mean(data,"Department","Marks")
             print("\nAverage marks by department:")
             for department,average in grouped.items():
                 print(f"{department}:{average}")
+            export_to_markdown(summary,grouped,"output/summary.md")
+            export_to_csv(summary,grouped,"output/summary.csv")
+            print("\nReports generated:")
+            print("Markdown:output/summary.md")
+            print("CSV:output/summary.csv")
 
+            
             data=select_columns(data,["Name","Age","Marks"])
             print("\nTransformed Data:")
             for row in data:
