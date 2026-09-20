@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from api.routes import router
+from fastapi.staticfiles import StaticFiles
 
 app=FastAPI(
     title="PyAnalytics API",
@@ -8,3 +9,6 @@ app=FastAPI(
 )
 
 app.include_router(router)
+
+app.mount("/dashboard",StaticFiles(directory="dashboard",html=True),
+          name="dashboard")

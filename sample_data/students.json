@@ -1,19 +1,38 @@
 [
     {
         "Name":"Aisha",
-        "Age":20,
-        "Marks":85
+        "Age":"20",
+        "Marks":"85",
+        "Department":"IT"
     },
-    
     {
         "Name":"Rahul",
-        "Age":21,
-        "Marks":90
+        "Age":"",
+        "Marks":"90",
+        "Department":"IT"   
     },
-    
     {
         "Name":"Neha",
-        "Age":20,
-        "Marks":75
+        "Age":"21",
+        "Marks":"85",
+        "Department":"CS"
+    },
+    {
+        "Name":"Aisha",
+        "Age":"20",
+        "Marks":"85",
+        "Department":"IT"   
+    },
+    {
+        "Name":"Rohan",
+        "Age":"22",
+        "Marks":"",
+        "Department":"CS"
+    },
+    {
+        "Name":"Priya",
+        "Age":"20",
+        "Marks":"92",
+        "Department":"IT"   
     }
 ]

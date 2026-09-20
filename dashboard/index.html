@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport",
+        content="width=device-width,initial-scale=1.0">
+        <title>PyAnalytics Dashboard</title>
+        <link rel="stylesheet" href="/dashboard/style.css">
+        <script="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1>PyAnalytics Dashboard</h1>
+                <p>Upload a CSV or JSON file to analyze your data.</p>
+            </header>
+            <section class="upload-section">
+                <h2>Upload Dataset</h2>
+                <input type="file"
+                id="fileInput" accept=".csv,.json">
+                <button id="uploadButton">Analyze File</button>
+                <p id="status"></p>
+            </section>
+            <section class="status-section">
+                <h2>Statistical Summary</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Count</h3>
+                        <p id="count"></p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Mean</h3>
+                        <p id="mean"></p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Median</h3>
+                        <p id="median"></p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>25th Percentile</h3>
+                        <p id="percentile25"></p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>50th Percentile</h3>
+                        <p id="percentile50"></p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>75th Percentile</h3>
+                        <p id="percentile75"></p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="chart-section">
+                <h2>Average Marks by Department</h2>
+                <div class="chart-container">
+                    <canvas id="departmentChart"></canvas>
+                </div>
+            </section>
+
+            <section class="data-section">
+                <h2>Cleaned Data</h2>
+                <div id="dataContainer">
+                    <p>Upload a file to view cleaned data.</p>
+                </div>
+            </section>
+        </div>
+        <script src="/dashboard/app.js"></script>
+    </body>
+</html>

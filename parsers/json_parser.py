@@ -9,7 +9,7 @@ def read_json(file_path:str)->list:
         with open(file_path,"r",newline="")as f:
             reader=json.load(f)
             data=list(reader)
-        return [data]
+        return data
     except FileNotFoundError:
         print("Error:JSON file not found")
 

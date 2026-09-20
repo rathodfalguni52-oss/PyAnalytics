@@ -42,11 +42,13 @@ async def upload_file(file:UploadFile =File(...)):
     if not file.filename:
         return{"error":"No file selected"}
 
-    extension=os.path.splitext(file.filename)[1].lower()
-    if extension not in["csv","json"]:
-        return{
-            "Error":"Unsupported file type.Only CSV and JSON files are supported."
-        }
+    filename=file.filename.lower()
+    if filename.endswith(".csv"):
+        extension=".csv"
+    elif filename.endswith(".json"):
+        extension=".json"
+    else:
+        return{"Error":"Unsupported file type.CSV and JSON files are supported."}
 
     contents=await file.read()
     if not contents:
@@ -61,7 +63,7 @@ async def upload_file(file:UploadFile =File(...)):
         is_valid,message=validate_file(temp_path)
         if not is_valid:
             return{"Error":message}
-        if extension=="csv":
+        if extension==".csv":
             data=read_csv(temp_path)
         else:
             data=read_json(temp_path)
