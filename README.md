@@ -1,6 +1,7 @@
 # PyAnalytics
-PyAnalytics is a modular Python-based data ingestion tool that supports reading and 
-validating CSV and JSON files through a command-line interface.
+PyAnalytics is a modular Python-based data processing and analytics tool that supports
+CSV and JSON data processing, data cleaning, statistical analysis, report generation, and
+REST API integration.
 
 # Features
 -CSV file parsing
@@ -10,6 +11,18 @@ validating CSV and JSON files through a command-line interface.
 -Command-line interface
 -Modular project structure
 -Basic automated testing
+-Data validation
+-Missing value handling
+-Duplicate removal
+-Numeric type conversion
+-Statistical analysis
+-Group-by analysis
+-Markdown report generation
+-FastAPI REST API
+-Swagger/OpenAPI documentation
+-Interactive web dashboard
+-CSV and JSON file upload
+
 
 # Project Structure
 PyAnalytics/
@@ -47,12 +60,23 @@ PyAnalytics can be used from command line to read CSV and JSON files.
 
 ### Read a CSV file
 ```bash
-python main.py --file sample_data/students.csv
-
-### Read a JSON file
+python cli_main.py --file sample_data/students.csv
 ```
-python main.py --file sample_data/students.json
+### Read a JSON file
 
+python cli_main.py --file sample_data/students.json
+
+### API Endpoints
+-`GET /`-API welcome message
+-`GET /health`-API health check
+-`POST /analyze`-Analyze json data
+-`POST /upload`-Upload and analyze CSV/JSON files
+
+### API Documentation
+After starting server
+```bash
+python -m uvicorn api_main:app --reload
+```
 # Testing
 PyAnalytics uses `pytest` for automated testing.
 ### Install pytest
